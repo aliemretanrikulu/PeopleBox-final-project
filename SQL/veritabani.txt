@@ -1,0 +1,32 @@
+products (ürünler tablosu)
+
+id (INT, primary key, auto increment)
+name (VARCHAR)
+description (TEXT)
+price (DECIMAL)
+category_id (INT, foreign key)
+image (VARCHAR)
+is_active (BOOLEAN)
+categories (kategoriler tablosu)
+
+id (INT, primary key, auto increment)
+name (VARCHAR)
+users (kullanıcılar tablosu)
+
+id (INT, primary key, auto increment)
+username (VARCHAR)
+password (VARCHAR)
+email (VARCHAR)
+orders (siparişler tablosu)
+
+id (INT, primary key, auto increment)
+user_id (INT, foreign key)
+total_price (DECIMAL)
+created_at (TIMESTAMP)
+order_items (sipariş öğeleri tablosu)
+
+id (INT, primary key, auto increment)
+order_id (INT, foreign key)
+product_id (INT, foreign key)
+quantity (INT)
+price (DECIMAL)
