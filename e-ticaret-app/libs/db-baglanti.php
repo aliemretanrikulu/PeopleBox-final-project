@@ -9,8 +9,5 @@
     mysqli_set_charset($connection,"UTF8");
     mysqli_select_db($connection, $database);
 
-    
-
-
 
 ?> 

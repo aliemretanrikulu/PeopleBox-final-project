@@ -1,3 +1,68 @@
+<?php
+
+$products = [
+    [
+        "model" => "Nike Air Force",
+        "brand" => "Nike",
+        "price" => "5.200₺",
+        "color_count" => 3,
+        "stock" => "Var",
+        "image" => "img/1.jpeg",
+        "comment" => 20,
+        "url" => "Nike-Air-Force"
+    ],
+    [
+        "model" => "Puma Daily",
+        "brand" => "Puma",
+        "price" => "2.800₺",
+        "color_count" => 4,
+        "stock" => "Var",
+        "image" => "img/2.jpeg",
+        "comment" => 9,
+        "url" => "Puma-Daily"
+    ],
+    [
+        "model" => "Adidas Superstar",
+        "brand" => "Adidas",
+        "price" => "5.000₺",
+        "color_count" => 2,
+        "stock" => "Tükendi",
+        "image" => "img/3.jpeg",
+        "comment" => 36,
+        "url" => "Adidas-Superstar"
+    ],
+    [
+        "model" => "Vans Old Skool",
+        "brand" => "Vans",
+        "price" => "4.100₺",
+        "color_count" => 2,
+        "stock" => "Var",
+        "image" => "img/4.jpeg",
+        "comment" => 0,
+        "url" => "Vans-Old-Skool"
+    ]
+];
+
+// Function ile yeni model ekleme
+function add_product(&$products, $model, $brand, $price, $color_count, $stock, $image, $comment, $url)
+{
+    $new_product = [
+        "model" => $model,
+        "brand" => $brand,
+        "price" => $price,
+        "color_count" => $color_count,
+        "stock" => $stock,
+        "image" => $image,
+        "comment" => $comment,
+        "url" => $url
+    ];
+
+    array_push($products, $new_product);
+}
+
+add_product($products, "Yeni Model", "Yeni Marka", "2.100₺", 2, "Var", "images/5.jpeg", 5, "Yeni-Model");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,56 +94,14 @@
     <div class="container my-4">
         <?php
         $brands = ["Nike", "Puma", "Adidas", "Vans"];
-        $products = [
-            [
-                "model" => "Nike Air Force",
-                "brand" => "Nike",
-                "price" => "5.200₺",
-                "color_count" => 3,
-                "stock" => "Var",
-                "image" => "img/1.jpeg",
-                "comment" => 20,
-                "url" => "Nike-Air-Force"
-            ],
-            [
-                "model" => "Puma Daily",
-                "brand" => "Puma",
-                "price" => "2.800₺",
-                "color_count" => 4,
-                "stock" => "Var",
-                "image" => "img/2.jpeg",
-                "comment" => 9,
-                "url" => "Puma-Daily"
-            ],
-            [
-                "model" => "Adidas Superstar",
-                "brand" => "Adidas",
-                "price" => "5.000₺",
-                "color_count" => 2,
-                "stock" => "Tükendi",
-                "image" => "img/3.jpeg",
-                "comment" => 36,
-                "url" => "Adidas-Superstar"
-            ],
-            [
-                "model" => "Vans Old Skool",
-                "brand" => "Vans",
-                "price" => "4.100₺",
-                "color_count" => 2,
-                "stock" => "Var",
-                "image" => "img/4.jpeg",
-                "comment" => 0,
-                "url" => "Vans-Old-Skool"
-            ]
-        ]; ?>
+        ?>
 
         <div class="row">
             <div class="col-md-3">
                 <h1 class="mb-3">Markalar</h1>
                 <ul class="list-group mb-3">
                     <?php foreach ($brands as $brand): ?>
-                        <li class="list-group-item">
-                            <?php echo $brand; ?>
+                        <li class="list-group-item"> <?php echo $brand; ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -88,15 +111,19 @@
                     <?php foreach ($products as $product): ?>
                         <div class="col-md-4 mb-4">
                             <div class="card">
-                                <img src="<?php echo $product['image']; ?>" class="card-img-top" alt="<?php echo $product['model']; ?>">
+                                <img src="<?php echo $product['image']; ?>" class="card-img-top"
+                                    alt="<?php echo $product['model']; ?>">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <a href="<?php echo $product['url']; ?>"><?php echo $product['model']; ?></a>
+                                        <a href="<?php echo $product['url']; ?>"> <?php echo $product['model']; ?></a>
                                     </h5>
-                                    <p class="card-text text-primary">Fiyat: <?php echo $product['price']; ?></p>
+                                    <p class="card-text text-info">Fiyat: <?php echo $product['price']; ?></p>
                                     <p class="card-text text-info">Renk Sayısı: <?php echo $product['color_count']; ?></p>
-                                    <p class="card-text text-info">Yorum Sayısı: <?php echo $product['comment'] > 0 ? $product['comment'] : 'Yorum yok'; ?></p>
-                                    <p class="card-text <?php echo $product['stock'] == 'Tükendi' ? 'text-danger' : 'text-success'; ?>">
+                                    <p class="card-text text-info">Yorum Sayısı:
+                                        <?php echo $product['comment'] > 0 ? $product['comment'] : 'Yorum yok'; ?>
+                                    </p>
+                                    <p
+                                        class="card-text <?php echo $product['stock'] == 'Tükendi' ? 'text-danger' : 'text-success'; ?>">
                                         Stok Durumu: <?php echo $product['stock']; ?>
                                     </p>
                                 </div>
