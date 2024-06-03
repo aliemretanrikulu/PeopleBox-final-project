@@ -18,7 +18,7 @@
 
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        include '../includes/functions.php';
+        include '../libs/functions.php';
         $username = $_POST['username'];
         $password = $_POST['password'];
 

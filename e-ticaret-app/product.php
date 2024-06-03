@@ -1,1 +1,0 @@
-// ürün detay sayfasi
