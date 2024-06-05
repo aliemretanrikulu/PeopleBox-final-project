@@ -1,13 +1,19 @@
 <div class="container my-4">
-    <?php
-    $brands = ["Nike", "Puma", "Adidas", "Vans"];
-    ?>
+    <p>
+    <h1 class="mt-5">Markalar</h1>
+        <?php
+        $num_categories = count($brands);
+        $num_products = count($products);
+        echo "$num_categories kategoride $num_products ürün listelenmiştir";
+        ?>
+    </p>
 
     <div class="row">
         <div class="col-md-3">
-            <ul class="list-group mb-3" style= "margin-top: 60px;">
+            <ul class="list-group mb-3" style="margin-top: 60px;">
                 <?php foreach ($brands as $brand): ?>
-                    <li class="list-group-item"> <?php echo $brand; ?>
+                    <li class="list-group-item" onclick="window.location.href='marka.php?marka=<?php echo $brand;?>'">
+                        <?php echo $brand; ?>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -22,15 +28,14 @@
 
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="<?php echo $product['url']; ?>"> <?php echo $product['model']; ?></a>
+                                    <a href="<?php echo $product['url']; ?>"><?php echo $product['model']; ?></a>
                                 </h5>
                                 <p class="card-text text-info">Fiyat: <?php echo $product['price']; ?></p>
                                 <p class="card-text text-info">Renk Sayısı: <?php echo $product['color_count']; ?></p>
                                 <p class="card-text text-info">Yorum Sayısı:
                                     <?php echo $product['comment'] > 0 ? $product['comment'] : 'Yorum yok'; ?>
                                 </p>
-                                <p
-                                    class="card-text <?php echo $product['stock'] == 'Tükendi' ? 'text-danger' : 'text-success'; ?>">
+                                <p class="card-text <?php echo $product['stock'] == 'Tükendi' ? 'text-danger' : 'text-success'; ?>">
                                     Stok Durumu: <?php echo $product['stock']; ?>
                                 </p>
                             </div>

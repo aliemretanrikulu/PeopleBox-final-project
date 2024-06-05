@@ -2,7 +2,7 @@
 
 $server = "localhost";
 $username = "root";
-$password = "password";
+$password = "";
 $database = "e-ticaret-app";
 
 $conn = new mysqli($server, $username, $password, $database);
@@ -25,7 +25,7 @@ function registerUser($username, $email, $password) {
 function loginUser($username, $password) {
     global $conn;
     $sql = "SELECT * FROM users WHERE username = ?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $conn-> prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -37,6 +37,20 @@ function loginUser($username, $password) {
     return false;
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $user = loginUser($username, $password);
+    if ($user) {
+        session_start();
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['password'] = $user['password'];
+        header("Location: dashboard.php");
+    } else {
+        echo "Giriş hatalı Lütfen tekrar deneyin.";
+    }
+}
 
 function checkLoggedIn() {
     session_start();
@@ -46,7 +60,6 @@ function checkLoggedIn() {
         exit;
     }
 }
-
 
 function add_product(&$products, $model, $brand, $price, $color_count, $stock, $image, $comment, $url)
 {
@@ -63,4 +76,7 @@ function add_product(&$products, $model, $brand, $price, $color_count, $stock, $
 
     array_push($products, $new_product);
 }
+
+
+
 ?>

@@ -22,4 +22,9 @@
             height: 200px;
             object-fit: cover;
         }
+
+        .list-group-item:hover {
+            cursor: pointer;
+            background-color: khaki;
+        }
     </style>

@@ -1,15 +1,32 @@
 <?php 
 
-if(!empty($_GET['q'])){
-    $word = $_GET['q'];
+require "libs/vars.php";
+require "libs/functions.php";
 
-    $products = array_filter($products, function($product) use($word){
-            return stristr($product['model'], $word);
-    });
+if(isset($_POST["login"])){
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
+    if($username == 'username' and $password == 'password' ){
+        setcookie("username",$username,time() + (60*60));
+        setcookie("login",true, time() + (60*60));
+        header('Location: index.php');
+    }else{
+        echo "<div class='alert alert-danger mb-0 mt-8 text-center' role='alert'>Yanlış kullanıcı adı veya şifre girdiniz.</div>";
+    }
 }
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top mb-4">
     <div class="container">
@@ -62,3 +79,35 @@ if(!empty($_GET['q'])){
         </div>
     </div>
 </nav>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="login.php" method="POST">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" class="form-control" name="username" id="username" required><br>
+
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" name="password" id="password" required><br>
+                        
+                        <button type="submit" name="login" class="btn btn-success">Submit</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
