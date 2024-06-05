@@ -1,3 +1,18 @@
+<?php 
+
+if(!empty($_GET['q'])){
+    $word = $_GET['q'];
+    
+    $filteredProducts = array_filter($products, function($product) use ($word){
+        return stristr($product['brand'], $word) || stristr($product['model'], $word); 
+    });
+
+}
+
+?>
+
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top mb-4">
     <div class="container">
         <a href="/" class="navbar-brand">Shoe Store</a>
@@ -19,8 +34,8 @@
                 </li>
             </ul>
             
-            <form class="form-inline ml-auto" role="search">
-                <input type="text" class="form-control me-2">
+            <form action="index.php" class="form-inline ml-auto" role="search" method="GET">
+                <input type="text" name="q" class="form-control me-2" placeholder="Search">
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
         </div>

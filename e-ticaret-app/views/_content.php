@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <ul class="list-group mb-3">
+            <ul class="list-group mb-3" style= "margin-top: 60px;">
                 <?php foreach ($brands as $brand): ?>
                     <li class="list-group-item"> <?php echo $brand; ?>
                     </li>
@@ -15,7 +15,7 @@
         <div class="col-md-9">
             <div class="row">
                 <?php foreach ($products as $product): ?>
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-4 mb-4" style="margin-top: 60px;">
                         <div class="card">
                             <img src="<?php echo $product['image']; ?>" class="card-img-top"
                                 alt="<?php echo $product['image']; ?>">
