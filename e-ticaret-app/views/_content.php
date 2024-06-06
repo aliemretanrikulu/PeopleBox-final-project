@@ -1,4 +1,4 @@
-<div class="container my-4">
+<div class="container my-5">
     <p>
     <h1 class="mt-5">Markalar</h1>
         <?php

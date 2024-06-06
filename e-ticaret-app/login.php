@@ -3,6 +3,8 @@
 require "libs/vars.php";
 require "libs/functions.php";
 
+$error_message = '';
+
 if(isset($_POST["login"])){
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -11,8 +13,9 @@ if(isset($_POST["login"])){
         setcookie("username",$username,time() + (60*60));
         setcookie("login",true, time() + (60*60));
         header('Location: index.php');
-    }else{
-        echo "<div class='alert alert-danger mb-0 mt-8 text-center' role='alert'>Yanlış kullanıcı adı veya şifre girdiniz.</div>";
+        exit();
+    } else {
+        $error_message = 'Yanlış kullanıcı adı veya şifre girdiniz.';
     }
 }
 
@@ -25,6 +28,15 @@ if(isset($_POST["login"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .alert {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1050;
+        }
+    </style>
 </head>
 <body>
 
@@ -39,7 +51,7 @@ if(isset($_POST["login"])){
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a href="views/create.php" class="nav-link">Create</a>
+                    <a href="create.php" class="nav-link">Create</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">Link 2</a>
@@ -54,7 +66,7 @@ if(isset($_POST["login"])){
 
                 <?php if(isset($_COOKIE["login"])): ?>
                     <li class="nav-item">
-                        <a href="views/logout.php" class="nav-link">Logout</a>
+                        <a href="logout.php" class="nav-link">Logout</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Hoş Geldiniz, <?php echo $_COOKIE["username"] ?></a>
@@ -65,7 +77,7 @@ if(isset($_POST["login"])){
                         <a href="login.php" class="nav-link">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a href="views/register.php" class="nav-link">Register</a>
+                        <a href="register.php" class="nav-link">Register</a>
                     </li>
                     <?php endif; ?>
                     
@@ -79,6 +91,12 @@ if(isset($_POST["login"])){
         </div>
     </div>
 </nav>
+
+<?php if (!empty($error_message)): ?>
+    <div class="alert alert-danger" role="alert">
+        <?php echo $error_message; ?>
+    </div>
+<?php endif; ?>
 
 <div class="container my-5">
     <div class="row">
@@ -106,8 +124,3 @@ if(isset($_POST["login"])){
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-
-

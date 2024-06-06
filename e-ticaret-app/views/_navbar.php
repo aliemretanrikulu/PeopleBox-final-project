@@ -22,7 +22,7 @@ if(!empty($_GET['q'])){
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a href="views/create.php" class="nav-link">Create</a>
+                    <a href="create.php" class="nav-link">Create</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">Link 2</a>
@@ -37,7 +37,7 @@ if(!empty($_GET['q'])){
 
                 <?php if(isset($_COOKIE["login"])): ?>
                     <li class="nav-item">
-                        <a href="views/logout.php" class="nav-link">Logout</a>
+                        <a href="logout.php" class="nav-link">Logout</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Hoş Geldiniz, <?php echo $_COOKIE["username"] ?></a>
@@ -48,7 +48,7 @@ if(!empty($_GET['q'])){
                         <a href="login.php" class="nav-link">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a href="views/register.php" class="nav-link">Register</a>
+                        <a href="register.php" class="nav-link">Register</a>
                     </li>
                     <?php endif; ?>
                     

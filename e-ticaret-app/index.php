@@ -3,15 +3,9 @@
 require "libs/vars.php";
 require "libs/functions.php"; ?>
 
-
 <?php include "views/_header.php";?>
 <?php include "views/_content.php";?>
 <?php include "views/_navbar.php";?>
-
-<div class="col-2">
-   <?php include "views/_title.php";?> 
-</div>
-
 <?php include "views/_footer.php";?>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

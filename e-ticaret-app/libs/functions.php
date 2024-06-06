@@ -22,6 +22,8 @@ function registerUser($username, $email, $password) {
 }
 
 
+
+
 function loginUser($username, $password) {
     global $conn;
     $sql = "SELECT * FROM users WHERE username = ?";
